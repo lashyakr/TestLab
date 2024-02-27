@@ -1,0 +1,15 @@
+name: Pipeline A
+
+on:
+  push:
+    branches:
+      - TestBranch
+
+jobs:
+  job_A:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 (Generate value)
+        run: echo "::set-output name=InputX::sixfactor"
+    outputs:
+      my_value: ${{ steps.job_A.outputs.InputX }}
