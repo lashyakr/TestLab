@@ -17,3 +17,10 @@ jobs:
         with:
           name: my-output-data
           path: output.txt
+
+      - name: Trigger Pipeline B
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.TRIGGERWFPAT }}
+          repository: lashyakr/TestLab
+          event-type: trigger-pipeline-b
