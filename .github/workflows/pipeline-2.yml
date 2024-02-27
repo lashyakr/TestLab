@@ -1,0 +1,20 @@
+name: Pipeline B
+on:
+  repository_dispatch:
+    types: [trigger-pipeline-b]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact from Pipeline A
+        uses: actions/download-artifact@v2
+        with:
+          name: url-artifact
+          path: output.txt
+
+      - name: Read URL from Artifact
+        run: |
+          read-url=$(cat output.txt)
+          echo "The URL is $read-url"
+
