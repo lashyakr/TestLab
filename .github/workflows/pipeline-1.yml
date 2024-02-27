@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1 (Generate value)
-        run: echo "::set-output name=InputX::sixfactor"
-    outputs:
-      my_value: ${{ steps.job_A.outputs.InputX }}
+        run: echo "http://www.google.com" > output.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-output-data
+          path: output.txt
